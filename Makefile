@@ -8,7 +8,6 @@ INCLUDEDIR				=	./include/
 LIBFTNAME				=	libft.a
 SRCFILES				=	push_swap.c 				\
 							stack.c						\
-							print.c						\
 							operations.c				\
 							execute.c					\
 							validation.c				\
