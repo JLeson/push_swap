@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:55:56 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/02/15 15:00:29 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:10:01 by joel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static int	is_num(char *arg);
 static int	is_int32(char *arg);
-static int	has_dup(char **elements, int size);
+static int	has_dup(char **elements, int size, int argv_offset);
 
-int	valid(char **elements, int size)
+int	valid(char **elements, int size, int argv_offset)
 {
 	int	cidx;
 
-	cidx = 0;
-	while (cidx < size)
+	cidx = argv_offset;
+	while (cidx < size + argv_offset)
 	{
 		if (!is_num(*(elements + cidx)))
 		{
@@ -35,7 +35,7 @@ int	valid(char **elements, int size)
 		}
 		cidx++;
 	}
-	if (has_dup(elements, size))
+	if (has_dup(elements, size, argv_offset))
 	{
 		ft_putstr_fd("List has duplicates\n", STDERR_FILENO);
 		return (0);
@@ -71,18 +71,18 @@ static int	is_int32(char *arg)
 	return (1);
 }
 
-static int	has_dup(char **elements, int size)
+static int	has_dup(char **elements, int size, int argv_offset)
 {
 	int	offset;
 	int	sub_offset;
 	int	arg;
 
-	offset = 0;
-	while (offset < size)
+	offset = argv_offset;
+	while (offset < size +  argv_offset)
 	{	
 		arg = ft_atoi(*(elements + offset));
-		sub_offset = 0;
-		while (sub_offset < size)
+		sub_offset = argv_offset;
+		while (sub_offset < size + argv_offset)
 		{	
 			if (elements + offset == elements + sub_offset)
 			{

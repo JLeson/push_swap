@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:06:48 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/02/22 20:07:33 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:38:29 by joel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@ typedef struct s_stack
 	int	max_size;
 }		t_stack;
 
-int		is_sorted(t_stack *a);
-
 //	ALGORITHMS
 
 void	ft_radixsort(t_stack *a, t_stack *b);
 void	simplesort(t_stack *a, t_stack *b);
+
+//	parse_arg.c
+
+char    **get_elements(int argc, char **argv);
+int 	get_stack_size(int argc, char **argv);
 
 //	stack.c
 
@@ -60,7 +63,7 @@ void	exec(int operation, t_stack *a, t_stack *b);
 
 //	validate.c
 
-int		valid(char **elements, int size);
+int		valid(char **elements, int size, int argv_offset);
 
 //	algoutils.c
 
