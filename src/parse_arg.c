@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:25:58 by joel              #+#    #+#             */
-/*   Updated: 2023/03/08 15:37:58 by joel             ###   ########.fr       */
+/*   Updated: 2023/03/13 13:25:40 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 
 static int	nelements(const char *s);
 
-char    **get_elements(int argc, char **argv)
+char	**get_elements(int argc, char **argv)
 {
-    char    **elements;
+	char	**elements;
 
-    if (argc == 2)
-        elements = ft_split(*(argv + 1), ' ');
-    else
-        elements = argv;
-    return (elements);
+	if (argc == 2)
+		elements = ft_split(*(argv + 1), ' ');
+	else
+		elements = argv;
+	return (elements);
 }
 
-int get_stack_size(int argc, char **argv)
+int	get_stack_size(int argc, char **argv)
 {
-    if (argc == 2)
-        return (nelements(*(argv + 1)) - 1);
-    else
-        return (argc - 1);    
+	if (argc == 2)
+		return (nelements(*(argv + 1)) - 1);
+	else
+		return (argc - 1);
 }
 
 static int	nelements(const char *s)
@@ -52,4 +52,3 @@ static int	nelements(const char *s)
 	}
 	return (n + 1);
 }
-

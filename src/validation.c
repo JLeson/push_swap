@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:55:56 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/08 15:10:01 by joel             ###   ########.fr       */
+/*   Updated: 2023/03/13 13:37:45 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 static int	is_num(char *arg);
@@ -61,13 +62,16 @@ static int	is_num(char *arg)
 
 static int	is_int32(char *arg)
 {
-	int	atoi;
-	int	cmpl;
+	int		atoi;
+	char	*itoa;
+	int		cmpl;
 
 	atoi = ft_atoi(arg);
-	cmpl = ft_max(ft_strlen(ft_itoa(atoi)), ft_strlen(arg));
-	if (ft_strncmp(ft_itoa(atoi), arg, cmpl))
+	itoa = ft_itoa(atoi);
+	cmpl = ft_max(ft_strlen(itoa), ft_strlen(arg));
+	if (ft_strncmp(itoa, arg, cmpl))
 		return (0);
+	free(itoa);
 	return (1);
 }
 
@@ -78,7 +82,7 @@ static int	has_dup(char **elements, int size, int argv_offset)
 	int	arg;
 
 	offset = argv_offset;
-	while (offset < size +  argv_offset)
+	while (offset < size + argv_offset)
 	{	
 		arg = ft_atoi(*(elements + offset));
 		sub_offset = argv_offset;

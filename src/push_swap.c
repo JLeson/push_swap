@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:06:30 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/08 15:37:02 by joel             ###   ########.fr       */
+/*   Updated: 2023/03/13 14:07:01 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "push_swap.h"
 #include "libft.h"
 
 static void	start_sort(t_stack *a, t_stack *b);
 static void	init_stacks(t_stack *a, char **argv, int argv_offset);
+static void	free_stacks(t_stack *a, t_stack *b);
 
 int	main(int argc, char **argv)
 {
@@ -25,15 +27,22 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 	elements = get_elements(argc, argv);
-	a = new_stack(get_stack_size(argc, argv));
-	b = new_stack(a->max_size);
-	if (!valid(elements, a->max_size, argc > 2))
-	{
-		ft_putstr_fd("Error!\n", STDERR_FILENO);
+	if (!elements)
 		return (1);
-	}
+	if (!valid(elements, get_stack_size(argc, argv), argc > 2))
+		return (ft_putstr_fd("Error!\n", STDERR_FILENO));
+	a = new_stack(get_stack_size(argc, argv));
+	if (!a)
+		return (1);
+	b = new_stack(a->max_size);
+	if (!b)
+		return ((int)free_stack(a) + 1);
+	if (!a || !b)
+		free_elements(elements, get_stack_size(argc, argv), argc);
 	init_stacks(a, elements, argc > 2);
 	start_sort(a, b);
+	free_elements(elements, a->max_size, argc);
+	free_stacks(a, b);
 	return (0);
 }
 
@@ -60,4 +69,10 @@ static void	init_stacks(t_stack *a, char **argv, int argv_offset)
 		stackadd(a, ft_atoi(*(argv + cidx)));
 		cidx--;
 	}
+}
+
+static void	free_stacks(t_stack *a, t_stack *b)
+{
+	free_stack(a);
+	free_stack(b);
 }

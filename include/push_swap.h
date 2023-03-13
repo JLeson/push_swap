@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:06:48 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/08 15:38:29 by joel             ###   ########.fr       */
+/*   Updated: 2023/03/13 14:04:13 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	simplesort(t_stack *a, t_stack *b);
 
 //	parse_arg.c
 
-char    **get_elements(int argc, char **argv);
-int 	get_stack_size(int argc, char **argv);
+char	**get_elements(int argc, char **argv);
+int		get_stack_size(int argc, char **argv);
 
 //	stack.c
 
@@ -70,6 +70,11 @@ int		valid(char **elements, int size, int argv_offset);
 t_stack	*normalize_stack(t_stack *a);
 int		get_idx(t_stack	*stack, int val);
 void	chexec(int operation, t_stack *a, t_stack *b, int c);
+
+// utils.c
+
+void	*free_stack(t_stack *stack);
+void	*free_elements(char **elements, unsigned int count, int argc);
 
 //	print.c
 
