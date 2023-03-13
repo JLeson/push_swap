@@ -6,13 +6,27 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:58:23 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/02/21 18:53:50 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/13 17:09:52 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static int	get_normalized(t_stack *a, int idx);
+
+int	is_sorted(t_stack *stack)
+{
+	int	cidx;
+
+	cidx = 1;
+	while (cidx < stack->size)
+	{
+		if (stackget(stack, cidx) > stackget(stack, cidx - 1))
+			return (0);
+		cidx++;
+	}
+	return (1);
+}
 
 t_stack	*normalize_stack(t_stack *a)
 {

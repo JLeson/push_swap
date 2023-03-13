@@ -6,7 +6,7 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:55:56 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/13 13:37:45 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/13 17:26:25 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,20 @@ int	valid(char **elements, int size, int argv_offset)
 	{
 		if (!is_num(*(elements + cidx)))
 		{
-			ft_putstr_fd("Argument is not a number\n", STDERR_FILENO);
+			ft_putstr_fd("Error: Argument is not a number\n", STDERR_FILENO);
 			return (0);
 		}
 		if (!is_int32(*(elements + cidx)))
 		{
-			ft_putstr_fd("Argument is not a 32-bit integer\n", STDERR_FILENO);
+			ft_putstr_fd("Error: Argument is not a 32-bit integer\n",
+				STDERR_FILENO);
 			return (0);
 		}
 		cidx++;
 	}
 	if (has_dup(elements, size, argv_offset))
 	{
-		ft_putstr_fd("List has duplicates\n", STDERR_FILENO);
+		ft_putstr_fd("Error: List has duplicates\n", STDERR_FILENO);
 		return (0);
 	}
 	return (1);
@@ -70,7 +71,10 @@ static int	is_int32(char *arg)
 	itoa = ft_itoa(atoi);
 	cmpl = ft_max(ft_strlen(itoa), ft_strlen(arg));
 	if (ft_strncmp(itoa, arg, cmpl))
+	{
+		free(itoa);
 		return (0);
+	}
 	free(itoa);
 	return (1);
 }

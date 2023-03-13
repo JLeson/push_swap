@@ -6,7 +6,7 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:06:48 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/13 14:04:13 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/13 17:27:09 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		valid(char **elements, int size, int argv_offset);
 t_stack	*normalize_stack(t_stack *a);
 int		get_idx(t_stack	*stack, int val);
 void	chexec(int operation, t_stack *a, t_stack *b, int c);
+int		is_sorted(t_stack *stack);
 
 // utils.c
 

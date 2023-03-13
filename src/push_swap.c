@@ -6,7 +6,7 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:06:30 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/13 14:07:01 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/13 17:28:28 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ int	main(int argc, char **argv)
 	if (!elements)
 		return (1);
 	if (!valid(elements, get_stack_size(argc, argv), argc > 2))
-		return (ft_putstr_fd("Error!\n", STDERR_FILENO));
+		return ((int)free_elements(elements,
+				get_stack_size(argc, argv), argc) + 1);
 	a = new_stack(get_stack_size(argc, argv));
 	if (!a)
 		return (1);
 	b = new_stack(a->max_size);
 	if (!b)
 		return ((int)free_stack(a) + 1);
-	if (!a || !b)
-		free_elements(elements, get_stack_size(argc, argv), argc);
 	init_stacks(a, elements, argc > 2);
 	start_sort(a, b);
 	free_elements(elements, a->max_size, argc);
