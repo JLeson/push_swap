@@ -6,7 +6,7 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:06:30 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/14 16:46:43 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/14 18:35:43 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	t_stack	*b;
 
 	if (argc < 2)
-		return (1);
+		return (ft_putstr_fd("Error: No arguments given\n", STDERR_FILENO));
 	elements = get_elements(argc, argv);
 	if (!elements)
 		return (1);
