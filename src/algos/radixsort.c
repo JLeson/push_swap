@@ -6,7 +6,7 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 18:45:47 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/13 17:09:21 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/14 15:51:37 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_radixsort(t_stack *a, t_stack *b)
 	normalized = normalize_stack(a);
 	if (is_sorted(normalized))
 		return ;
-	maxdigits = maxbits(a);
+	maxdigits = maxbits(normalized);
 	while (cbit < maxdigits)
 	{
 		sortdigits(a, b, normalized, cbit);

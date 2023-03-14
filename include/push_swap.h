@@ -6,7 +6,7 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:06:48 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/13 17:27:09 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:46:41 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_stack
 //	ALGORITHMS
 
 void	ft_radixsort(t_stack *a, t_stack *b);
+void	mediumsort(t_stack *a, t_stack *b);
 void	simplesort(t_stack *a, t_stack *b);
 
 //	parse_arg.c
@@ -79,8 +80,8 @@ void	*free_elements(char **elements, unsigned int count, int argc);
 
 //	print.c
 
-void	print_stack(t_stack *stack);
-void	print_stackv(t_stack *stack);
-void	print_stacks(t_stack *stack_a, t_stack *stack_b);
-void	print_stacksv(t_stack *stack_a, t_stack *stack_b);
+// void	print_stack(t_stack *stack);
+// void	print_stackv(t_stack *stack);
+// void	print_stacks(t_stack *stack_a, t_stack *stack_b);
+// void	print_stacksv(t_stack *stack_a, t_stack *stack_b);
 #endif

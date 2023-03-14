@@ -15,6 +15,7 @@ SRCFILES				=	push_swap.c 		\
 							utils.c				\
 							algoutils.c			\
 							algos/radixsort.c	\
+							algos/mediumsort.c	\
 							algos/simplesort.c	\
 
 SRCS					=	$(addprefix $(SRCDIR), $(SRCFILES))

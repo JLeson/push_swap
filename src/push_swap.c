@@ -6,7 +6,7 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:06:30 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/13 17:28:28 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:46:43 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,19 @@ int	main(int argc, char **argv)
 
 static void	start_sort(t_stack *a, t_stack *b)
 {	
-	if (a->size == 2)
+	if (a->max_size == 1)
+		return ;
+	if (a->max_size == 2)
 	{
 		if (stackget(a, 0) < stackget(a, 1))
 			exec(SA, a, b);
 	}
-	if (a->size > 3)
+	else if (a->max_size == 3)
+		simplesort(a, b);
+	else if (a->max_size > 5)
 		ft_radixsort(a, b);
 	else
-		simplesort(a, b);
+		mediumsort(a, b);
 }
 
 static void	init_stacks(t_stack *a, char **argv, int argv_offset)
