@@ -1,3 +1,5 @@
 .vscode
 push_swap
-./lib/
+lib
+libft/bin
+include/libft.h
