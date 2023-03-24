@@ -3,3 +3,5 @@ push_swap
 lib
 libft/bin
 include/libft.h
+checker
+test.py

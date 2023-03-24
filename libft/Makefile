@@ -62,6 +62,7 @@ SRCFILES		=	ft_isalnum.c			\
 					ft_islower.c			\
 					ft_putunbr_fd.c			\
 					ft_putptr_fd.c			\
+					ft_puthex_fd.c			\
 					ft_printf.c				\
 					ft_strnchr.c			\
 					ft_min.c				\

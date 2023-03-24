@@ -7,13 +7,18 @@ INCLUDEDIR				=	./include/
 
 LIBFTNAME				=	libft.a
 SRCFILES				=	push_swap.c 		\
-							init.c				\
-							stack.c				\
-							print.c				\
-							operations.c		\
 							parse.c				\
+							init.c				\
 							validation.c		\
+							stack.c				\
+							operations.c		\
+							execution.c			\
+							algo_util.c			\
+							algos/minisort.c	\
+							algos/smallsort.c	\
+							algos/radixsort.c	\
 							util/memory.c		\
+							print.c				\
 
 SRCS					=	$(addprefix $(SRCDIR), $(SRCFILES))
 
