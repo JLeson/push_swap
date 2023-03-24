@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:57:56 by joel              #+#    #+#             */
-/*   Updated: 2023/03/23 22:22:22 by joel             ###   ########.fr       */
+/*   Updated: 2023/03/24 14:39:37 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ static char	*copy_str(char *str)
 		cidx++;
 	}
 	*(str_copy + cidx) = '\0';
-	return (str);
+	return (str_copy);
 }
 
 char	**parse_argv(unsigned int argc, char **argv)
 {
 	char			**args;
+	char			*str_copy;
 	unsigned int	cidx;
 	unsigned int	argv_idx;
 
@@ -47,27 +48,32 @@ char	**parse_argv(unsigned int argc, char **argv)
 	argv_idx = 1;
 	while (argv_idx < argc)
 	{
-		*(args + cidx) = copy_str(*(argv + argv_idx));
+		str_copy = copy_str(*(argv + argv_idx));
+		if (!str_copy)
+			return (NULL);
+		*(args + cidx) = str_copy;
+		if (!*(args + cidx))
+			return (NULL);
 		argv_idx++;
 		cidx++;
 	}
 	return (args);
 }
 
-unsigned int	n_args(char *arg, char c)
+unsigned int	get_n_args(char *str, char c)
 {
 	unsigned int	cidx;
 	unsigned int	n;
 
 	cidx = 0;
 	n = 0;
-	while (*(arg + cidx))
+	while (*(str + cidx))
 	{
-		if (*(arg + cidx) != c)
+		if (*(str + cidx) != c)
 			n++;
-		while (*(arg + cidx) != c && *(arg + cidx))
+		while (*(str + cidx) != c && *(str + cidx))
 			cidx++;
-		while (*(arg + cidx) == c && *(arg + cidx))
+		while (*(str + cidx) == c && *(str + cidx))
 			cidx++;
 	}
 	return (n);

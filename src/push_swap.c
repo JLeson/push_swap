@@ -3,45 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:31:54 by joel              #+#    #+#             */
-/*   Updated: 2023/03/23 22:33:55 by joel             ###   ########.fr       */
+/*   Updated: 2023/03/24 15:38:19 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-#include <stdlib.h>
 #include "libft.h"
 #include "push_swap.h"
 
-void	check_leaks(void)
+static void	succes_exit(t_stack *a, t_stack *b, char **args,
+	unsigned int n_args)
 {
-	system("leaks -q push_swap");
+	free_str_array(args, n_args);
+	free_stack(a);
+	free_stack(b);
 }
 
+static int	error_exit(char *err_msg, char **args, unsigned int n_args)
+{
+	free_str_array(args, n_args);
+	ft_putstr_fd(err_msg, STDERR_FILENO);
+	return (ERROR);
+}
 
 int	main(int argc, char **argv)
 {
 	char			**args;
-	unsigned int	arg_count;
+	unsigned int	n_args;
+	t_stack			*a;
+	t_stack			*b;
 
-	atexit(check_leaks);
-	args = NULL;
 	if (argc < 2)
 		return (ERROR);
-	if (argc == 2)
-	{
-		args = ft_split(*(argv + 1), ' ');
-		arg_count = n_args(*(argv + 1), ' ');
-	}
-	else
-	{
-		args = parse_argv((unsigned int)argc, argv);
-		arg_count = (unsigned int)argc - 1;
-	}
-	if (!is_valid(args, arg_count))
+	args = init_args(argc, argv);
+	if (!args)
 		return (ERROR);
+	n_args = init_n_args(argc, argv);
+	if (!is_valid(args, n_args))
+		return (error_exit(ERROR_MSG, args, n_args));
+	a = new_stack(n_args);
+	if (!a)
+		return (ERROR);
+	b = new_stack(a->max_size);
+	if (!b)
+	{
+		free_stack(a);
+		return (error_exit(ERROR_MSG, args, n_args));
+	}
+	init_stack(a, args);
+	succes_exit(a, b, args, n_args);
 	return (SUCCES);
 }

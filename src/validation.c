@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:52:27 by joel              #+#    #+#             */
-/*   Updated: 2023/03/23 22:02:21 by joel             ###   ########.fr       */
+/*   Updated: 2023/03/24 13:32:35 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static unsigned int	is_int32(char *arg)
 {
 	int		atoi;
 	char	*itoa;
-	int		cmpl;
+	int		cmplen;
 
 	atoi = ft_atoi(arg);
 	itoa = ft_itoa(atoi);
-	cmpl = ft_max(ft_strlen(itoa), ft_strlen(arg));
-	if (ft_strncmp(itoa, arg, cmpl))
+	cmplen = ft_max(ft_strlen(itoa), ft_strlen(arg));
+	if (ft_strncmp(itoa, arg, cmplen))
 	{
 		free(itoa);
 		return (FALSE);

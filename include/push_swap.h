@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joel <joel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:32:25 by joel              #+#    #+#             */
-/*   Updated: 2023/03/23 22:19:11 by joel             ###   ########.fr       */
+/*   Updated: 2023/03/24 15:34:48 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define TRUE	1
 # define FALSE	0
 
+# define ERROR_MSG "Error\n"
+
 typedef struct s_stack	t_stack;
 
 typedef struct s_stack
@@ -27,6 +29,12 @@ typedef struct s_stack
 	unsigned int	size;
 	unsigned int	max_size;
 }	t_stack;
+
+//	init.c
+
+char			**init_args(int argc, char **argv);
+unsigned int	init_n_args(int argc, char **argv);
+void			init_stack(t_stack *stack, char **args);
 
 //	stack.c
 
@@ -50,9 +58,16 @@ void			rrotate(t_stack *stack);
 //	parse.c
 
 char			**parse_argv(unsigned int argc, char **argv);
-unsigned int	n_args(char *arg, char c);
+unsigned int	get_n_args(char *arg, char c);
 
 //	valid.c
 
 unsigned int	is_valid(char **args, unsigned int size);
+
+//	UTILS
+
+//		memory.c
+
+void			free_str_array(char **str_array, unsigned int n_args);
+void			free_stack(t_stack *stack);
 #endif
