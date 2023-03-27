@@ -6,19 +6,20 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:31:54 by joel              #+#    #+#             */
-/*   Updated: 2023/03/24 18:38:08 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/27 16:06:57 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-static void	succes_exit(t_stack *a, t_stack *b, char **args,
+static int	succes_exit(t_stack *a, t_stack *b, char **args,
 	unsigned int n_args)
 {
 	free_str_array(args, n_args);
 	free_stack(a);
 	free_stack(b);
+	return (SUCCES);
 }
 
 static int	error_exit(char *err_msg, char **args, unsigned int n_args)
@@ -71,6 +72,5 @@ int	main(int argc, char **argv)
 	}
 	init_stack(a, args);
 	sort(a, b);
-	succes_exit(a, b, args, n_args);
-	return (SUCCES);
+	return (succes_exit(a, b, args, n_args));
 }

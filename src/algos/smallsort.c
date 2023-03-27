@@ -6,7 +6,7 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:49:14 by fsarkoh           #+#    #+#             */
-/*   Updated: 2023/03/24 18:28:33 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:43:02 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,36 +46,11 @@ static int	get_min(t_stack *stack)
 	return (min);
 }
 
-// static void	_insert(t_stack *a, t_stack *b)
-// {
-// 	unsigned int	cidx;
-// 	unsigned int	operation;
-// 	unsigned int	n_rotations;
-
-// 	cidx = 0;
-// 	operation = RRA;
-// 	while (stackget(a, cidx) > stackget(b, b->size - 1) && cidx < a->size)
-// 		cidx++;
-// 	n_rotations = cidx;
-// 	if (cidx > a->size / 2)
-// 	{
-// 		n_rotations = a->size - cidx;
-// 		operation = RA;
-// 	}
-// 	chexec(operation, a, b, n_rotations);
-// 	exec(PA, a, b);
-// 	if (operation == RRA)
-// 		chexec(RA, a, b, n_rotations + 1);
-// 	else
-// 		chexec(RRA, a, b, n_rotations);
-// }
-
 static void	rotate_to_idx(t_stack *a, t_stack *b, unsigned int idx)
 {
 	unsigned int	operation;
 	unsigned int	n_rotations;
 
-	// ft_printf("inidx: %u\n", idx);
 	if (idx <= a->size / 2)
 	{
 		n_rotations = idx;
@@ -103,7 +78,6 @@ static void	insert(t_stack *a, t_stack *b)
 	}
 	rotate_to_idx(a, b, inidx);
 	exec(PA, a, b);
-	// print_stack(a, FALSE);
 }
 
 void	smallsort(t_stack *a, t_stack *b)
@@ -112,9 +86,7 @@ void	smallsort(t_stack *a, t_stack *b)
 		return ;
 	chexec(PB, a, b, a->size - 3);
 	minisort(a, b);
-	// print_stack(a, FALSE);
 	while (b->size > 0)
 		insert(a, b);
 	rotate_to_idx(a, b, get_idx(a, get_max(a)));
-	// print_stack(a, FALSE);
 }

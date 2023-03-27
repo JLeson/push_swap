@@ -6,7 +6,7 @@
 /*   By: fsarkoh <fsarkoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:52:27 by joel              #+#    #+#             */
-/*   Updated: 2023/03/24 13:32:35 by fsarkoh          ###   ########.fr       */
+/*   Updated: 2023/03/27 16:01:55 by fsarkoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,20 @@ static unsigned int	is_num(char *arg)
 
 static unsigned int	is_int32(char *arg)
 {
-	int		atoi;
-	char	*itoa;
-	int		cmplen;
+	int				atoi;
+	char			*itoa;
+	int				cmplen;
+	unsigned int	arg_offset;
 
-	atoi = ft_atoi(arg);
+	arg_offset = 0;
+	while (*(arg + arg_offset) == '0')
+		arg_offset++;
+	if (*(arg + arg_offset) == '\0')
+		return (TRUE);
+	atoi = ft_atoi(arg + arg_offset);
 	itoa = ft_itoa(atoi);
 	cmplen = ft_max(ft_strlen(itoa), ft_strlen(arg));
-	if (ft_strncmp(itoa, arg, cmplen))
+	if (ft_strncmp(itoa, arg + arg_offset, cmplen))
 	{
 		free(itoa);
 		return (FALSE);
